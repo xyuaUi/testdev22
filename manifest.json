@@ -1,12 +1,12 @@
 {
-    "name": "Cadangan PWA",
-    "short_name": "Cadangan PWA",
+    "name": "Cadangan PWA Fullscreen",
+    "short_name": "PWA Fullscreen",
     "start_url": ".",
-    "display": "standalone",
-    "orientation": "portrait-primary",
-    "background_color": "#FFA500",
-    "theme_color": "#FFA500",
-    "description": "Cadangan PWA siap digunakan untuk aplikasi mendatang",
+    "display": "fullscreen", // Mode fullscreen penuh
+    "orientation": "landscape", // Wajib landscape
+    "background_color": "#000000",
+    "theme_color": "#000000",
+    "description": "Cadangan PWA Landscape Fullscreen Tanpa Notch/Punchole",
     "categories": ["utilities"],
     "lang": "id",
     "icons": [
@@ -41,5 +41,9 @@
             "purpose": "any maskable"
         }
     ],
-    "prefer_related_applications": false
+    "prefer_related_applications": false,
+    "display_override": ["fullscreen", "landscape"],
+    "edge_side_panel": {
+        "preferred_width": 0
+    }
 }
