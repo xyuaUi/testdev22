@@ -1,12 +1,12 @@
 {
     "name": "Cute Pets Game",
     "short_name": "PetsGame",
-    "start_url": "https://xyuaui.github.io/testdev22/",
+    "start_url": ".",
     "display": "standalone",
     "orientation": "portrait-primary",
     "background_color": "#FFA500",
     "theme_color": "#FFA500",
-    "description": "Game dengan tema hewan peliharaan lucu, tampilan mirip menu game populer!",
+    "description": "Game dengan tema hewan peliharaan lucu!",
     "categories": ["games", "entertainment"],
     "lang": "id",
     "icons": [
