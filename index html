@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Game Cute Pets</title>
+    <link rel="stylesheet" href="styles.css">
+    <link rel="manifest" href="manifest.json">
+    <link rel="icon" href="assets/icons/icon-192x192.png" type="image/png">
+    <link rel="apple-touch-icon" href="assets/icons/icon-192x192.png">
+    <meta name="theme-color" content="#FFA500">
+</head>
+<body>
+    <!-- Background -->
+    <div class="background"></div>
+
+    <!-- Navigasi Kiri -->
+    <nav class="left-nav">
+        <ul>
+            <li><button class="nav-btn">QUICK MATCH</button></li>
+            <li><button class="nav-btn">CUSTOM GAME</button></li>
+            <li><button class="nav-btn">TUTORIAL</button></li>
+            <li><button class="nav-btn">LOCKER</button></li>
+            <li><button class="nav-btn">SETTINGS</button></li>
+            <li><button class="nav-btn">EXIT GAME</button></li>
+        </ul>
+    </nav>
+
+    <!-- Konten Tengah -->
+    <div class="center-content">
+        <img src="assets/couch.png" alt="Kucing & Anjing di Sofa" class="main-illustration">
+    </div>
+
+    <!-- Widget Kanan -->
+    <div class="right-widgets">
+        <a href="#" class="widget-item">
+            <img src="assets/forum.png" alt="Official Forum">
+        </a>
+        <a href="#" class="widget-item">
+            <img src="assets/the-lamb.png" alt="Promo The Lamb">
+        </a>
+    </div>
+
+    <!-- Footer Bar -->
+    <footer class="bottom-bar">
+        <div class="left-section">
+            <button class="bar-btn">
+                <img src="assets/item-shop.png" alt="Item Shop"> ITEM SHOP
+            </button>
+            <span class="stat-item">
+                <img src="assets/paw-icon.png" alt="Paw Points"> 300
+            </span>
+            <span class="stat-item">
+                <img src="assets/coin-icon.png" alt="Coins"> 0
+            </span>
+        </div>
+        <div class="right-section">
+            <img src="assets/user-avatar.png" alt="Avatar" class="user-avatar">
+            <span class="username">myra</span>
+            <button class="bar-btn">
+                <img src="assets/mic-icon.png" alt="Mic">
+            </button>
+            <span class="stat-item">
+                <img src="assets/trophy-icon.png" alt="Trophy"> 0/5
+            </span>
+        </div>
+    </footer>
+
+    <!-- PWA Install Button (muncul jika memenuhi syarat) -->
+    <button id="installBtn" class="install-btn hidden">
+        Instal Aplikasi
+    </button>
+
+    <script src="app.js"></script>
+    <script>
+        if ('serviceWorker' in navigator) {
+            window.addEventListener('load', () => {
+                navigator.serviceWorker.register('service-worker.js')
+                    .then(reg => console.log('Service Worker terdaftar:', reg.scope))
+                    .catch(err => console.log('Gagal mendaftarkan Service Worker:', err));
+            });
+        }
+    </script>
+</body>
+</html>
