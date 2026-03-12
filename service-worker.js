@@ -1,4 +1,4 @@
-const CACHE_NAME = 'cadangan-pwa-cache-v1';
+const CACHE_NAME = 'cadangan-pwa-fullscreen-cache-v1';
 const ASSETS_TO_CACHE = [
     '.',
     'index.html',
@@ -39,4 +39,20 @@ self.addEventListener('fetch', (event) => {
                 return response || fetch(event.request);
             })
     );
+});
+
+// Pastikan aplikasi tetap berjalan di latar belakang
+self.addEventListener('fetch', (event) => {
+    if (event.request.mode === 'navigate') {
+        event.respondWith(
+            fetch(event.request)
+                .then(response => {
+                    caches.open(CACHE_NAME).then(cache => {
+                        cache.put(event.request, response.clone());
+                    });
+                    return response;
+                })
+                .catch(() => caches.match('index.html'))
+        );
+    }
 });
