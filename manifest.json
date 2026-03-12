@@ -1,9 +1,9 @@
 {
-    "name": "PWA Redmi 10 - Tombol Tengah",
-    "short_name": "PWA Tombol",
+    "name": "PWA Landscape",
+    "short_name": "PWA Landscape",
     "start_url": ".",
-    "display": "standalone",
-    "orientation": "any",
+    "display": "fullscreen",
+    "orientation": "landscape",
     "background_color": "#000000",
     "theme_color": "#000000",
     "lang": "id",
