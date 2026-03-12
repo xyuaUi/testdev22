@@ -12,11 +12,11 @@
     <meta name="apple-mobile-web-app-capable" content="yes">
     <meta name="apple-mobile-web-app-status-bar-style" content="#FFA500">
     <meta name="theme-color" content="#FFA500">
-    <meta name="description" content="Game dengan tema hewan peliharaan lucu, tampilan mirip menu game populer!">
+    <meta name="description" content="Game dengan tema hewan peliharaan lucu!">
     <meta name="categories" content="games, entertainment">
     
     <!-- PWA Manifest & Icons -->
-    <link rel="manifest" href="https://xyuaui.github.io/testdev22/manifest.json">
+    <link rel="manifest" href="manifest.json">
     <link rel="icon" href="assets/icons/icon-96x96.png" type="image/png">
     <link rel="apple-touch-icon" href="assets/icons/icon-192x192.png">
 </head>
@@ -85,7 +85,7 @@
     <script>
         if ('serviceWorker' in navigator) {
             window.addEventListener('load', () => {
-                navigator.serviceWorker.register('https://xyuaui.github.io/testdev22/service-worker.js')
+                navigator.serviceWorker.register('service-worker.js')
                     .then(reg => console.log('Service Worker terdaftar:', reg.scope))
                     .catch(err => console.log('Gagal mendaftarkan Service Worker:', err));
             });
