@@ -1,6 +1,6 @@
 {
-    "name": "PWA Redmi 10",
-    "short_name": "PWA Redmi10",
+    "name": "PWA Cadangan Redmi 10",
+    "short_name": "PWA Redmi 10",
     "start_url": ".",
     "display": "fullscreen",
     "orientation": "landscape",
@@ -39,6 +39,6 @@
             "purpose": "any maskable"
         }
     ],
-    "prefer_related_applications": false,
-    "display_override": ["fullscreen"]
+    "description": "PWA Cadangan Khusus Redmi 10 dengan Background 2400×1080, Mode Landscape Fullscreen.",
+    "prefer_related_applications": false
 }
