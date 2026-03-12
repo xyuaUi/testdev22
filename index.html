@@ -2,48 +2,62 @@
 <html lang="id">
 <head>
     <meta charset="UTF-8">
-    <!-- Paksa Landscape -->
+    <!-- Paksa Landscape Fullscreen Anti Notch -->
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no, viewport-fit=cover">
     <meta name="orientation" content="landscape">
+    <meta name="mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <meta name="msapplication-starturl" content=".">
     
-    <title>PWA Landscape</title>
+    <!-- Hapus Teks Pencarian Google -->
+    <meta name="robots" content="noindex, nofollow">
+    <meta name="googlebot" content="noindex, nofollow">
     
-    <meta name="application-name" content="PWA Landscape">
+    <title>PWA Fullscreen</title>
+    
+    <meta name="application-name" content="PWA Fullscreen">
     <meta name="theme-color" content="#000000">
     
     <link rel="manifest" href="manifest.json">
     <link rel="icon" href="assets/icons/icon-96x96.png" type="image/png">
 
     <style>
+        /* Reset Total Semua Elemen */
         * { 
             margin: 0; 
             padding: 0; 
             box-sizing: border-box; 
             border: none !important;
             outline: none !important;
+            -webkit-tap-highlight-color: transparent !important; /* Hapus Overlay Biru Chrome */
+            tap-highlight-color: transparent !important;
         }
         html, body {
             width: 100vw;
             height: 100vh;
-            position: fixed;
-            top: 0;
-            left: 0;
-            overflow: hidden;
+            position: fixed !important;
+            top: 0 !important;
+            left: 0 !important;
+            right: 0 !important;
+            bottom: 0 !important;
+            overflow: hidden !important;
+            background-color: #000 !important;
             display: flex;
             justify-content: center;
             align-items: center;
         }
-        <!-- Latar Belakang 00.png -->
+        /* Latar Belakang 00.png Paksa Fullscreen */
         #bg-image {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
+            position: fixed !important;
+            top: 0 !important;
+            left: 0 !important;
+            width: 100% !important;
+            height: 100% !important;
+            object-fit: cover !important;
             z-index: -1;
         }
-        <!-- Teks Kecil Tanpa Border -->
+        /* Teks Tanpa Pencarian Google */
         #click-text {
             font-size: 14px;
             color: #fff;
@@ -51,6 +65,27 @@
             cursor: pointer;
             user-select: none;
             z-index: 1;
+            pointer-events: auto;
+        }
+        /* Hapus Elemen Bawaan Browser */
+        ::-webkit-search-decoration,
+        ::-webkit-search-cancel-button,
+        ::-webkit-search-results-button,
+        ::-webkit-search-results-decoration {
+            display: none !important;
+        }
+        /* Paksa Fullscreen Tanpa Ruang Kosong */
+        :-webkit-full-screen {
+            width: 100% !important;
+            height: 100% !important;
+            top: 0 !important;
+            left: 0 !important;
+        }
+        :fullscreen {
+            width: 100% !important;
+            height: 100% !important;
+            top: 0 !important;
+            left: 0 !important;
         }
     </style>
 </head>
@@ -68,10 +103,26 @@
             });
         }
 
-        // Fungsi Saat Ditekan - Tidak Ada Aksi Visual
+        // Paksa Fullscreen Otomatis Setelah Dimuat
+        window.addEventListener('load', () => {
+            const docEl = document.documentElement;
+            if (docEl.requestFullscreen) {
+                docEl.requestFullscreen({ navigationUI: "hide" });
+            } else if (docEl.webkitRequestFullscreen) {
+                docEl.webkitRequestFullscreen({ navigationUI: "hide" });
+            }
+        });
+
+        // Fungsi Saat Ditekan - Tidak Ada Aksi
         function handleClick() {
-            // Tidak ada popup/informasi apapun
+            // Tidak ada aksi apapun
         }
+
+        // Hapus Garis Putih Atas Jika Muncul
+        window.addEventListener('resize', () => {
+            document.body.style.top = '0px !important';
+            document.documentElement.style.top = '0px !important';
+        });
     </script>
 </body>
 </html>
