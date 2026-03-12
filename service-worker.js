@@ -1,8 +1,9 @@
-const CACHE_NAME = 'cadangan-pwa-fullscreen-cache-v1';
+const CACHE_NAME = 'cadangan-pwa-fullscreen-cache-v3';
 const ASSETS_TO_CACHE = [
     '.',
     'index.html',
-    'manifest.json'
+    'manifest.json',
+    'assets/00.png' // Nama gambar diubah jadi 00.png
 ];
 
 // Instal Cache
@@ -31,7 +32,7 @@ self.addEventListener('activate', (event) => {
     );
 });
 
-// Fetch Asset (Jalankan Meskipun Halaman Kosong)
+// Fetch Asset
 self.addEventListener('fetch', (event) => {
     event.respondWith(
         caches.match(event.request)
@@ -41,7 +42,7 @@ self.addEventListener('fetch', (event) => {
     );
 });
 
-// Pastikan aplikasi tetap berjalan di latar belakang
+// Pastikan navigasi berjalan lancar
 self.addEventListener('fetch', (event) => {
     if (event.request.mode === 'navigate') {
         event.respondWith(
