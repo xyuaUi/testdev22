@@ -2,146 +2,93 @@
 <html lang="id">
 <head>
     <meta charset="UTF-8">
-    <!-- Meta Viewport Khusus Redmi 10 (Resolusi 2400×1080, Rasio Aspek ~2.22:1) -->
-    <meta name="viewport" content="width=2400, height=1080, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover">
+    <!-- Perbaiki Meta Viewport (hilangin user-scalable=no tapi tetap kontrol skala) -->
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
     
     <title>Cadangan PWA Redmi 10</title>
     
-    <!-- Meta Tag Konfigurasi Khusus Device -->
+    <!-- Meta Tag Perbaikan -->
     <meta name="application-name" content="PWA Redmi 10">
     <meta name="apple-mobile-web-app-title" content="PWA Redmi 10">
     <meta name="apple-mobile-web-app-capable" content="yes">
     <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
     <meta name="theme-color" content="#000000">
-    <meta name="description" content="PWA Optimasi Redmi 10 - Background 2400×1080">
-    
-    <meta name="mobile-web-app-capable" content="yes">
-    <meta name="msapplication-tap-highlight" content="no">
     <meta name="HandheldFriendly" content="true">
     <meta name="MobileOptimized" content="2400">
     
-    <!-- PWA Manifest & Icons -->
+    <!-- PWA Manifest -->
     <link rel="manifest" href="manifest.json">
     <link rel="icon" href="assets/icons/icon-96x96.png" type="image/png">
     <link rel="apple-touch-icon" href="assets/icons/icon-192x192.png">
-    
-    <!-- CSS Paksa Background 2400×1080 untuk Redmi 10 -->
+
     <style>
         * { 
             margin: 0; 
             padding: 0; 
             box-sizing: border-box; 
             border: none !important;
-            outline: none !important;
         }
-        /* Container Utama Sesuai Resolusi Redmi 10 */
-        #bg-container {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 2400px; /* Paksa lebar sesuai target */
-            height: 1080px; /* Paksa tinggi sesuai target */
-            overflow: hidden;
-            transform-origin: top left;
-            transform: scale(calc(100vw / 2400)); /* Sesuaikan skala dengan layar */
-            z-index: -1;
-        }
-        /* Background Paksa Ukuran 2400×1080 */
-        #bg-image {
-            width: 2400px !important;
-            height: 1080px !important;
-            object-fit: none !important; /* Jangan distorsi, tampilkan penuh sesuai ukuran */
-            object-position: 0 0 !important;
-            display: block !important;
-        }
-        /* Body Penuh Layar Tanpa Garis Putih */
-        body {
+        html, body {
             width: 100vw;
             height: 100vh;
-            position: fixed;
-            top: 0;
-            left: 0;
-            right: 0;
-            bottom: 0;
             overflow: hidden;
-            background-color: #000000;
-            margin-top: 0 !important;
+            background-color: #000;
         }
-        /* Style Fullscreen Khusus Redmi 10 */
-        :-webkit-full-screen {
-            width: 2400px !important;
-            height: 1080px !important;
-            top: 0 !important;
+        /* Container Background Paksa 2400x1080 */
+        #bg-wrapper {
+            position: fixed;
+            width: 2400px;
+            height: 1080px;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            z-index: -1;
         }
-        :fullscreen {
-            width: 2400px !important;
-            height: 1080px !important;
-            top: 0 !important;
-        }
-        /* Hilangkan Scrollbar & Elemen Bawaan */
-        :-webkit-full-screen::-webkit-scrollbar,
-        :fullscreen::-webkit-scrollbar,
-        body::-webkit-scrollbar {
-            display: none;
+        #bg-image {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            display: block;
         }
     </style>
 </head>
 <body>
-    <!-- Container Paksa Background 2400×1080 -->
-    <div id="bg-container">
-        <img id="bg-image" src="assets/00.png" alt="Background 2400×1080">
+    <div id="bg-wrapper">
+        <img id="bg-image" src="assets/00.png" alt="Background">
     </div>
 
     <script>
         // Daftarkan Service Worker
         if ('serviceWorker' in navigator) {
-            window.addEventListener('load', () => {
-                navigator.serviceWorker.register('service-worker.js')
-                    .then(reg => console.log('Service Worker terdaftar:', reg.scope))
-                    .catch(err => console.log('Gagal mendaftarkan Service Worker:', err));
+            window.addEventListener('load', async () => {
+                try {
+                    await navigator.serviceWorker.register('service-worker.js');
+                    console.log('Service Worker Terdaftar');
+                } catch (err) {
+                    console.error('Gagal Daftarkan Service Worker:', err);
+                }
             });
         }
 
-        // Tombol Instal & Fullscreen Otomatis Khusus Redmi 10
-        let deferredPrompt;
-        window.addEventListener('beforeinstallprompt', (e) => {
-            e.preventDefault();
-            deferredPrompt = e;
-            console.log('Tombol instal aplikasi siap ditampilkan');
-        });
-
-        // Fungsi Fullscreen Sesuai Resolusi Redmi 10
-        window.addEventListener('load', () => {
-            const enterFullscreen = () => {
-                const docEl = document.documentElement;
-                if (docEl.requestFullscreen) {
-                    docEl.requestFullscreen({ navigationUI: "hide" });
-                } else if (docEl.webkitRequestFullscreen) {
-                    docEl.webkitRequestFullscreen({ navigationUI: "hide" });
-                } else if (docEl.msRequestFullscreen) {
-                    docEl.msRequestFullscreen();
-                }
-                // Pastikan background tetap ukuran 2400×1080 setelah fullscreen
-                const bgImg = document.getElementById('bg-image');
-                bgImg.style.width = '2400px';
-                bgImg.style.height = '1080px';
-            };
-            setTimeout(enterFullscreen, 300); // Penundaan lebih cepat untuk Redmi 10
-        });
-
-        // Perbarui Skala Saat Layar Berubah
-        window.addEventListener('resize', () => {
-            const container = document.getElementById('bg-container');
-            const scale = Math.min(window.innerWidth / 2400, window.innerHeight / 1080);
-            container.style.transform = `scale(${scale})`;
-            
-            if (!document.fullscreenElement) {
-                const docEl = document.documentElement;
-                if (docEl.requestFullscreen) {
-                    docEl.requestFullscreen({ navigationUI: "hide" });
-                }
+        // Fungsi Fullscreen Otomatis
+        async function enterFullscreen() {
+            const docEl = document.documentElement;
+            if (docEl.requestFullscreen) {
+                await docEl.requestFullscreen({ navigationUI: "hide" });
+            } else if (docEl.webkitRequestFullscreen) {
+                await docEl.webkitRequestFullscreen({ navigationUI: "hide" });
             }
-        });
+        }
+
+        // Jalankan Fullscreen Setelah Gambar Dimuat
+        document.getElementById('bg-image').onload = async () => {
+            await enterFullscreen();
+        };
+
+        // Tangani Error Gambar Tidak Dimuat
+        document.getElementById('bg-image').onerror = () => {
+            document.body.style.backgroundColor = '#000';
+        };
     </script>
 </body>
 </html>
