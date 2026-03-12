@@ -3,17 +3,15 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Cute Pets Game</title>
-    <link rel="stylesheet" href="styles.css">
+    <title>Cadangan PWA</title>
     
     <!-- PWA Meta Tags -->
-    <meta name="application-name" content="Cute Pets Game">
-    <meta name="apple-mobile-web-app-title" content="PetsGame">
+    <meta name="application-name" content="Cadangan PWA">
+    <meta name="apple-mobile-web-app-title" content="Cadangan PWA">
     <meta name="apple-mobile-web-app-capable" content="yes">
     <meta name="apple-mobile-web-app-status-bar-style" content="#FFA500">
     <meta name="theme-color" content="#FFA500">
-    <meta name="description" content="Game dengan tema hewan peliharaan lucu!">
-    <meta name="categories" content="games, entertainment">
+    <meta name="description" content="Cadangan PWA siap digunakan untuk aplikasi mendatang">
     
     <!-- PWA Manifest & Icons -->
     <link rel="manifest" href="manifest.json">
@@ -21,68 +19,9 @@
     <link rel="apple-touch-icon" href="assets/icons/icon-192x192.png">
 </head>
 <body>
-    <!-- Background -->
-    <div class="background"></div>
-
-    <!-- Navigasi Kiri -->
-    <nav class="left-nav">
-        <ul>
-            <li><button class="nav-btn">QUICK MATCH</button></li>
-            <li><button class="nav-btn">CUSTOM GAME</button></li>
-            <li><button class="nav-btn">TUTORIAL</button></li>
-            <li><button class="nav-btn">LOCKER</button></li>
-            <li><button class="nav-btn">SETTINGS</button></li>
-            <li><button class="nav-btn">EXIT GAME</button></li>
-        </ul>
-    </nav>
-
-    <!-- Konten Tengah -->
-    <div class="center-content">
-        <img src="assets/couch.png" alt="Kucing & Anjing di Sofa" class="main-illustration">
-    </div>
-
-    <!-- Widget Kanan -->
-    <div class="right-widgets">
-        <a href="#" class="widget-item">
-            <img src="assets/forum.png" alt="Official Forum">
-        </a>
-        <a href="#" class="widget-item">
-            <img src="assets/the-lamb.png" alt="Promo The Lamb">
-        </a>
-    </div>
-
-    <!-- Footer Bar -->
-    <footer class="bottom-bar">
-        <div class="left-section">
-            <button class="bar-btn">
-                <img src="assets/item-shop.png" alt="Item Shop"> ITEM SHOP
-            </button>
-            <span class="stat-item">
-                <img src="assets/paw-icon.png" alt="Paw Points"> 300
-            </span>
-            <span class="stat-item">
-                <img src="assets/coin-icon.png" alt="Coins"> 0
-            </span>
-        </div>
-        <div class="right-section">
-            <img src="assets/user-avatar.png" alt="Avatar" class="user-avatar">
-            <span class="username">myra</span>
-            <button class="bar-btn">
-                <img src="assets/mic-icon.png" alt="Mic">
-            </button>
-            <span class="stat-item">
-                <img src="assets/trophy-icon.png" alt="Trophy"> 0/5
-            </span>
-        </div>
-    </footer>
-
-    <!-- Tombol Instal Aplikasi -->
-    <button id="installBtn" class="install-btn hidden">
-        Instal aplikasi
-    </button>
-
-    <script src="app.js"></script>
+    <!-- Halaman Kosong Sesuai Permintaan -->
     <script>
+        // Daftarkan Service Worker
         if ('serviceWorker' in navigator) {
             window.addEventListener('load', () => {
                 navigator.serviceWorker.register('service-worker.js')
@@ -90,6 +29,15 @@
                     .catch(err => console.log('Gagal mendaftarkan Service Worker:', err));
             });
         }
+
+        // Tampilkan Tombol Instal Jika Mungkin
+        let deferredPrompt;
+        window.addEventListener('beforeinstallprompt', (e) => {
+            e.preventDefault();
+            deferredPrompt = e;
+            // Jika ingin menampilkan tombol instal meskipun halaman kosong, bisa tambahkan elemen di sini
+            console.log('Tombol instal aplikasi siap ditampilkan');
+        });
     </script>
 </body>
 </html>
