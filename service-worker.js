@@ -1,5 +1,5 @@
-const CACHE_NAME = 'pwa-landscape-cache-v1';
-const ASSETS = ['.', 'index.html', 'manifest.json'];
+const CACHE_NAME = 'pwa-landscape-cache-v2';
+const ASSETS = ['.', 'index.html', 'manifest.json', 'assets/00.png'];
 
 self.addEventListener('install', e => {
     e.waitUntil(caches.open(CACHE_NAME).then(c => c.addAll(ASSETS)).then(() => self.skipWaiting()));
