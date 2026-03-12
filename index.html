@@ -4,18 +4,16 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover">
     
-    <!-- Judul Aplikasi -->
     <title>Cadangan PWA Fullscreen</title>
     
-    <!-- Meta Tag untuk Fullscreen & Landscape -->
+    <!-- Meta Tag Konfigurasi -->
     <meta name="application-name" content="Cadangan PWA Fullscreen">
     <meta name="apple-mobile-web-app-title" content="PWA Fullscreen">
     <meta name="apple-mobile-web-app-capable" content="yes">
     <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
     <meta name="theme-color" content="#000000">
-    <meta name="description" content="Cadangan PWA Landscape Fullscreen Tanpa Notch/Punchole">
+    <meta name="description" content="Cadangan PWA Landscape Fullscreen dengan Gambar Latar">
     
-    <!-- Meta Tag untuk Menyembunyikan Notch/Punchole -->
     <meta name="mobile-web-app-capable" content="yes">
     <meta name="msapplication-tap-highlight" content="no">
     
@@ -24,22 +22,25 @@
     <link rel="icon" href="assets/icons/icon-96x96.png" type="image/png">
     <link rel="apple-touch-icon" href="assets/icons/icon-192x192.png">
     
-    <!-- CSS untuk Fullscreen Penuh -->
+    <!-- CSS untuk Menampilkan Gambar Latar -->
     <style>
         * { margin: 0; padding: 0; box-sizing: border-box; }
         body {
             width: 100vw;
             height: 100vh;
-            background-color: #000000;
-            /* Forcely tutup area notch/punchole */
             position: fixed;
             top: 0;
             left: 0;
             right: 0;
             bottom: 0;
             overflow: hidden;
+            /* Path gambar diubah jadi 00.png */
+            background-image: url('assets/00.png');
+            background-size: cover;
+            background-position: center;
+            background-repeat: no-repeat;
         }
-        /* Style untuk mode fullscreen */
+        /* Style fullscreen */
         :-webkit-full-screen {
             width: 100% !important;
             height: 100% !important;
@@ -51,7 +52,7 @@
     </style>
 </head>
 <body>
-    <!-- Halaman Kosong Sesuai Permintaan -->
+    <!-- Gambar akan tampil sebagai latar belakang -->
     <script>
         // Daftarkan Service Worker
         if ('serviceWorker' in navigator) {
@@ -62,7 +63,7 @@
             });
         }
 
-        // Tampilkan Tombol Instal & Aktifkan Fullscreen Otomatis
+        // Tombol Instal & Fullscreen Otomatis
         let deferredPrompt;
         window.addEventListener('beforeinstallprompt', (e) => {
             e.preventDefault();
@@ -70,25 +71,22 @@
             console.log('Tombol instal aplikasi siap ditampilkan');
         });
 
-        // Aktifkan Fullscreen Secara Otomatis Setelah Halaman Dimuat
+        // Masuk Fullscreen Otomatis
         window.addEventListener('load', () => {
-            // Fungsi untuk masuk mode fullscreen
             const enterFullscreen = () => {
                 const docEl = document.documentElement;
                 if (docEl.requestFullscreen) {
                     docEl.requestFullscreen({ navigationUI: "hide" });
-                } else if (docEl.webkitRequestFullscreen) { // Untuk Safari/Chrome Android
+                } else if (docEl.webkitRequestFullscreen) {
                     docEl.webkitRequestFullscreen({ navigationUI: "hide" });
-                } else if (docEl.msRequestFullscreen) { // Untuk Edge
+                } else if (docEl.msRequestFullscreen) {
                     docEl.msRequestFullscreen();
                 }
             };
-
-            // Masuk fullscreen setelah sedikit penundaan agar sistem siap
             setTimeout(enterFullscreen, 500);
         });
 
-        // Pastikan tetap fullscreen jika ada perubahan ukuran layar
+        // Tetap Fullscreen Saat Ukuran Berubah
         window.addEventListener('resize', () => {
             if (!document.fullscreenElement) {
                 const docEl = document.documentElement;
