@@ -1,13 +1,13 @@
 {
-    "name": "Cute Pets Game",
-    "short_name": "PetsGame",
+    "name": "Cadangan PWA",
+    "short_name": "Cadangan PWA",
     "start_url": ".",
     "display": "standalone",
     "orientation": "portrait-primary",
     "background_color": "#FFA500",
     "theme_color": "#FFA500",
-    "description": "Game dengan tema hewan peliharaan lucu!",
-    "categories": ["games", "entertainment"],
+    "description": "Cadangan PWA siap digunakan untuk aplikasi mendatang",
+    "categories": ["utilities"],
     "lang": "id",
     "icons": [
         {
