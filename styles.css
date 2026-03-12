@@ -167,7 +167,7 @@ body {
     display: none !important;
 }
 
-/* Style untuk mode standalone */
+/* Mode Standalone */
 @media all and (display-mode: standalone) {
     body {
         border-top: 2px solid #FFA500;
