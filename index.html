@@ -2,48 +2,54 @@
 <html lang="id">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+    <!-- Paksa Landscape & Fullscreen Tanpa Notch -->
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no, viewport-fit=cover">
+    <meta name="orientation" content="landscape">
     
-    <title>PWA Redmi 10 - Bisa Tekan</title>
+    <title>PWA Landscape</title>
     
-    <meta name="application-name" content="PWA Redmi 10">
+    <meta name="application-name" content="PWA Landscape">
     <meta name="theme-color" content="#000000">
-    <meta name="description" content="PWA dengan Tombol di Tengah">
     
     <link rel="manifest" href="manifest.json">
     <link rel="icon" href="assets/icons/icon-96x96.png" type="image/png">
-    <link rel="apple-touch-icon" href="assets/icons/icon-192x192.png" type="image/png">
 
     <style>
-        * { margin: 0; padding: 0; box-sizing: border-box; }
-        body {
+        * { 
+            margin: 0; 
+            padding: 0; 
+            box-sizing: border-box; 
+            border: none !important;
+            outline: none !important;
+        }
+        html, body {
             width: 100vw;
             height: 100vh;
+            position: fixed;
+            top: 0;
+            left: 0;
+            overflow: hidden;
             background-color: #000;
             display: flex;
             justify-content: center;
             align-items: center;
         }
-        /* Tombol/Teks di Tengah Layar */
-        #btn-text {
-            font-size: 48px;
+        /* Teks Kecil Bisa Ditekan */
+        #click-text {
+            font-size: 14px;
             color: #fff;
             text-align: center;
-            padding: 20px 50px;
-            border: 3px solid #fff;
-            border-radius: 10px;
             cursor: pointer;
             user-select: none;
-            transition: all 0.3s ease;
+            transition: color 0.2s ease;
         }
-        #btn-text:hover {
-            background-color: #fff;
-            color: #000;
+        #click-text:active {
+            color: #ccc;
         }
     </style>
 </head>
 <body>
-    <div id="btn-text" onclick="handleClick()">TEKAN SAYA DISINI</div>
+    <div id="click-text" onclick="handleClick()">Klik Saya</div>
 
     <script>
         // Daftarkan Service Worker
@@ -55,12 +61,12 @@
             });
         }
 
-        // Fungsi Saat Ditekan
+        // Fungsi Saat Teks Ditekan
         function handleClick() {
             alert('Teks Ditekan! 🎉');
-            // Bisa tambahin aksi lain disini, contoh: masuk fullscreen
-            if (document.documentElement.requestFullscreen) {
-                document.documentElement.requestFullscreen();
+            // Paksa Fullscreen Jika Belum Aktif
+            if (!document.fullscreenElement) {
+                document.documentElement.requestFullscreen({ navigationUI: "hide" });
             }
         }
     </script>
