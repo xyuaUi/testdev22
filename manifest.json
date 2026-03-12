@@ -1,6 +1,6 @@
 {
-    "name": "PWA Landscape",
-    "short_name": "PWA Landscape",
+    "name": "PWA Fullscreen Anti Notch",
+    "short_name": "PWA Fullscreen",
     "start_url": ".",
     "display": "fullscreen",
     "orientation": "landscape",
@@ -27,5 +27,9 @@
             "purpose": "any maskable"
         }
     ],
-    "prefer_related_applications": false
+    "prefer_related_applications": false,
+    "display_override": ["fullscreen"],
+    "edge_side_panel": {
+        "preferred_width": 0
+    }
 }
