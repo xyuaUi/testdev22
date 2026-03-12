@@ -1,4 +1,4 @@
-const CACHE_NAME = 'pwa-landscape-cache-v2';
+const CACHE_NAME = 'pwa-fullscreen-final-v1';
 const ASSETS = ['.', 'index.html', 'manifest.json', 'assets/00.png'];
 
 self.addEventListener('install', e => {
