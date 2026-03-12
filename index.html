@@ -2,21 +2,53 @@
 <html lang="id">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Cadangan PWA</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover">
     
-    <!-- PWA Meta Tags -->
-    <meta name="application-name" content="Cadangan PWA">
-    <meta name="apple-mobile-web-app-title" content="Cadangan PWA">
+    <!-- Judul Aplikasi -->
+    <title>Cadangan PWA Fullscreen</title>
+    
+    <!-- Meta Tag untuk Fullscreen & Landscape -->
+    <meta name="application-name" content="Cadangan PWA Fullscreen">
+    <meta name="apple-mobile-web-app-title" content="PWA Fullscreen">
     <meta name="apple-mobile-web-app-capable" content="yes">
-    <meta name="apple-mobile-web-app-status-bar-style" content="#FFA500">
-    <meta name="theme-color" content="#FFA500">
-    <meta name="description" content="Cadangan PWA siap digunakan untuk aplikasi mendatang">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+    <meta name="theme-color" content="#000000">
+    <meta name="description" content="Cadangan PWA Landscape Fullscreen Tanpa Notch/Punchole">
+    
+    <!-- Meta Tag untuk Menyembunyikan Notch/Punchole -->
+    <meta name="mobile-web-app-capable" content="yes">
+    <meta name="msapplication-tap-highlight" content="no">
     
     <!-- PWA Manifest & Icons -->
     <link rel="manifest" href="manifest.json">
     <link rel="icon" href="assets/icons/icon-96x96.png" type="image/png">
     <link rel="apple-touch-icon" href="assets/icons/icon-192x192.png">
+    
+    <!-- CSS untuk Fullscreen Penuh -->
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body {
+            width: 100vw;
+            height: 100vh;
+            background-color: #000000;
+            /* Forcely tutup area notch/punchole */
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            overflow: hidden;
+        }
+        /* Style untuk mode fullscreen */
+        :-webkit-full-screen {
+            width: 100% !important;
+            height: 100% !important;
+        }
+        :fullscreen {
+            width: 100% !important;
+            height: 100% !important;
+        }
+    </style>
 </head>
 <body>
     <!-- Halaman Kosong Sesuai Permintaan -->
@@ -30,13 +62,40 @@
             });
         }
 
-        // Tampilkan Tombol Instal Jika Mungkin
+        // Tampilkan Tombol Instal & Aktifkan Fullscreen Otomatis
         let deferredPrompt;
         window.addEventListener('beforeinstallprompt', (e) => {
             e.preventDefault();
             deferredPrompt = e;
-            // Jika ingin menampilkan tombol instal meskipun halaman kosong, bisa tambahkan elemen di sini
             console.log('Tombol instal aplikasi siap ditampilkan');
+        });
+
+        // Aktifkan Fullscreen Secara Otomatis Setelah Halaman Dimuat
+        window.addEventListener('load', () => {
+            // Fungsi untuk masuk mode fullscreen
+            const enterFullscreen = () => {
+                const docEl = document.documentElement;
+                if (docEl.requestFullscreen) {
+                    docEl.requestFullscreen({ navigationUI: "hide" });
+                } else if (docEl.webkitRequestFullscreen) { // Untuk Safari/Chrome Android
+                    docEl.webkitRequestFullscreen({ navigationUI: "hide" });
+                } else if (docEl.msRequestFullscreen) { // Untuk Edge
+                    docEl.msRequestFullscreen();
+                }
+            };
+
+            // Masuk fullscreen setelah sedikit penundaan agar sistem siap
+            setTimeout(enterFullscreen, 500);
+        });
+
+        // Pastikan tetap fullscreen jika ada perubahan ukuran layar
+        window.addEventListener('resize', () => {
+            if (!document.fullscreenElement) {
+                const docEl = document.documentElement;
+                if (docEl.requestFullscreen) {
+                    docEl.requestFullscreen({ navigationUI: "hide" });
+                }
+            }
         });
     </script>
 </body>
