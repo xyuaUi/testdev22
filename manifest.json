@@ -1,9 +1,9 @@
 {
-    "name": "PWA Cadangan Redmi 10",
-    "short_name": "PWA Redmi 10",
+    "name": "PWA Redmi 10 - Tombol Tengah",
+    "short_name": "PWA Tombol",
     "start_url": ".",
-    "display": "fullscreen",
-    "orientation": "landscape",
+    "display": "standalone",
+    "orientation": "any",
     "background_color": "#000000",
     "theme_color": "#000000",
     "lang": "id",
@@ -11,18 +11,6 @@
         {
             "src": "assets/icons/icon-48x48.png",
             "sizes": "48x48",
-            "type": "image/png",
-            "purpose": "any maskable"
-        },
-        {
-            "src": "assets/icons/icon-72x72.png",
-            "sizes": "72x72",
-            "type": "image/png",
-            "purpose": "any maskable"
-        },
-        {
-            "src": "assets/icons/icon-96x96.png",
-            "sizes": "96x96",
             "type": "image/png",
             "purpose": "any maskable"
         },
@@ -39,6 +27,5 @@
             "purpose": "any maskable"
         }
     ],
-    "description": "PWA Cadangan Khusus Redmi 10 dengan Background 2400×1080, Mode Landscape Fullscreen.",
     "prefer_related_applications": false
 }
