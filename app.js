@@ -1,25 +1,47 @@
 let deferredPrompt;
 const installBtn = document.getElementById('installBtn');
 
+// Sembunyikan tombol jika aplikasi sudah diinstal
+const checkInstalled = () => {
+    const isStandalone = window.matchMedia('(display-mode: standalone)').matches;
+    const isIosStandalone = window.navigator.standalone === true;
+    if (isStandalone || isIosStandalone) {
+        installBtn.classList.add('hidden');
+    }
+};
+
+// Inisialisasi cek status instalasi
+checkInstalled();
+
+// Tangkap event beforeinstallprompt
 window.addEventListener('beforeinstallprompt', (e) => {
     e.preventDefault();
     deferredPrompt = e;
     installBtn.classList.remove('hidden');
+    console.log('Tombol instal siap ditampilkan');
+});
 
-    installBtn.addEventListener('click', () => {
-        installBtn.classList.add('hidden');
+// Aksi saat tombol instal diklik
+installBtn.addEventListener('click', () => {
+    installBtn.classList.add('hidden');
+    if (deferredPrompt) {
         deferredPrompt.prompt();
         deferredPrompt.userChoice.then((choiceResult) => {
             if (choiceResult.outcome === 'accepted') {
-                console.log('Pengguna menerima instalasi');
+                console.log('Pengguna menerima instalasi aplikasi');
             } else {
-                console.log('Pengguna menolak instalasi');
+                console.log('Pengguna menolak instalasi aplikasi');
             }
             deferredPrompt = null;
         });
-    });
+    }
 });
 
+// Event setelah instalasi berhasil
 window.addEventListener('appinstalled', (evt) => {
-    console.log('Aplikasi terinstal', evt);
+    console.log('Aplikasi berhasil diinstal:', evt);
+    deferredPrompt = null;
 });
+
+// Cek ulang status saat halaman di-refresh
+window.addEventListener('resize', checkInstalled);
