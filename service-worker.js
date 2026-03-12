@@ -1,24 +1,8 @@
-const CACHE_NAME = 'cute-pets-game-cache-v2';
+const CACHE_NAME = 'cadangan-pwa-cache-v1';
 const ASSETS_TO_CACHE = [
     '.',
     'index.html',
-    'styles.css',
-    'app.js',
-    'manifest.json',
-    'assets/couch.png',
-    'assets/forum.png',
-    'assets/the-lamb.png',
-    'assets/item-shop.png',
-    'assets/paw-icon.png',
-    'assets/coin-icon.png',
-    'assets/user-avatar.png',
-    'assets/mic-icon.png',
-    'assets/trophy-icon.png',
-    'assets/icons/icon-48x48.png',
-    'assets/icons/icon-72x72.png',
-    'assets/icons/icon-96x96.png',
-    'assets/icons/icon-192x192.png',
-    'assets/icons/icon-512x512.png'
+    'manifest.json'
 ];
 
 // Instal Cache
@@ -47,7 +31,7 @@ self.addEventListener('activate', (event) => {
     );
 });
 
-// Fetch Asset
+// Fetch Asset (Jalankan Meskipun Halaman Kosong)
 self.addEventListener('fetch', (event) => {
     event.respondWith(
         caches.match(event.request)
