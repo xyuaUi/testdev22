@@ -2,61 +2,67 @@
 <html lang="id">
 <head>
     <meta charset="UTF-8">
-    <!-- Perbaiki Meta Viewport & Tambah Meta Description -->
     <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
-    <meta name="description" content="PWA Cadangan Khusus Redmi 10 dengan Background 2400×1080, Mode Landscape Fullscreen Tanpa Notch.">
     
-    <title>Cadangan PWA Redmi 10</title>
+    <title>PWA Redmi 10 - Bisa Tekan</title>
     
-    <!-- Meta Tag PWA -->
     <meta name="application-name" content="PWA Redmi 10">
-    <meta name="apple-mobile-web-app-title" content="PWA Redmi 10">
-    <meta name="apple-mobile-web-app-capable" content="yes">
-    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
     <meta name="theme-color" content="#000000">
+    <meta name="description" content="PWA dengan Tombol di Tengah">
     
-    <!-- PWA Manifest -->
     <link rel="manifest" href="manifest.json">
     <link rel="icon" href="assets/icons/icon-96x96.png" type="image/png">
     <link rel="apple-touch-icon" href="assets/icons/icon-192x192.png" type="image/png">
 
     <style>
         * { margin: 0; padding: 0; box-sizing: border-box; }
-        html, body {
+        body {
             width: 100vw;
             height: 100vh;
-            overflow: hidden;
             background-color: #000;
+            display: flex;
+            justify-content: center;
+            align-items: center;
         }
-        #bg-image {
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-            display: block;
+        /* Tombol/Teks di Tengah Layar */
+        #btn-text {
+            font-size: 48px;
+            color: #fff;
+            text-align: center;
+            padding: 20px 50px;
+            border: 3px solid #fff;
+            border-radius: 10px;
+            cursor: pointer;
+            user-select: none;
+            transition: all 0.3s ease;
+        }
+        #btn-text:hover {
+            background-color: #fff;
+            color: #000;
         }
     </style>
 </head>
 <body>
-    <img id="bg-image" src="assets/00.png" alt="Background 2400×1080">
+    <div id="btn-text" onclick="handleClick()">TEKAN SAYA DISINI</div>
 
     <script>
-        // Daftarkan Service Worker dengan Error Handling
+        // Daftarkan Service Worker
         if ('serviceWorker' in navigator) {
-            window.addEventListener('load', async () => {
-                try {
-                    const reg = await navigator.serviceWorker.register('service-worker.js');
-                    console.log('Service Worker Terdaftar:', reg.scope);
-                } catch (err) {
-                    console.error('Gagal Daftarkan Service Worker:', err);
-                }
+            window.addEventListener('load', () => {
+                navigator.serviceWorker.register('service-worker.js')
+                    .then(reg => console.log('SW Terdaftar'))
+                    .catch(err => console.error('Gagal SW:', err));
             });
         }
 
-        // Tangani Error Gambar
-        document.getElementById('bg-image').addEventListener('error', (e) => {
-            console.error('Gambar Tidak Dimuat:', e);
-            e.target.style.backgroundColor = '#000';
-        });
+        // Fungsi Saat Ditekan
+        function handleClick() {
+            alert('Teks Ditekan! 🎉');
+            // Bisa tambahin aksi lain disini, contoh: masuk fullscreen
+            if (document.documentElement.requestFullscreen) {
+                document.documentElement.requestFullscreen();
+            }
+        }
     </script>
 </body>
 </html>
