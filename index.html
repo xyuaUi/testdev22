@@ -2,47 +2,31 @@
 <html lang="id">
 <head>
     <meta charset="UTF-8">
-    <!-- Perbaiki Meta Viewport (hilangin user-scalable=no tapi tetap kontrol skala) -->
+    <!-- Perbaiki Meta Viewport & Tambah Meta Description -->
     <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+    <meta name="description" content="PWA Cadangan Khusus Redmi 10 dengan Background 2400×1080, Mode Landscape Fullscreen Tanpa Notch.">
     
     <title>Cadangan PWA Redmi 10</title>
     
-    <!-- Meta Tag Perbaikan -->
+    <!-- Meta Tag PWA -->
     <meta name="application-name" content="PWA Redmi 10">
     <meta name="apple-mobile-web-app-title" content="PWA Redmi 10">
     <meta name="apple-mobile-web-app-capable" content="yes">
     <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
     <meta name="theme-color" content="#000000">
-    <meta name="HandheldFriendly" content="true">
-    <meta name="MobileOptimized" content="2400">
     
     <!-- PWA Manifest -->
     <link rel="manifest" href="manifest.json">
     <link rel="icon" href="assets/icons/icon-96x96.png" type="image/png">
-    <link rel="apple-touch-icon" href="assets/icons/icon-192x192.png">
+    <link rel="apple-touch-icon" href="assets/icons/icon-192x192.png" type="image/png">
 
     <style>
-        * { 
-            margin: 0; 
-            padding: 0; 
-            box-sizing: border-box; 
-            border: none !important;
-        }
+        * { margin: 0; padding: 0; box-sizing: border-box; }
         html, body {
             width: 100vw;
             height: 100vh;
             overflow: hidden;
             background-color: #000;
-        }
-        /* Container Background Paksa 2400x1080 */
-        #bg-wrapper {
-            position: fixed;
-            width: 2400px;
-            height: 1080px;
-            top: 50%;
-            left: 50%;
-            transform: translate(-50%, -50%);
-            z-index: -1;
         }
         #bg-image {
             width: 100%;
@@ -53,42 +37,26 @@
     </style>
 </head>
 <body>
-    <div id="bg-wrapper">
-        <img id="bg-image" src="assets/00.png" alt="Background">
-    </div>
+    <img id="bg-image" src="assets/00.png" alt="Background 2400×1080">
 
     <script>
-        // Daftarkan Service Worker
+        // Daftarkan Service Worker dengan Error Handling
         if ('serviceWorker' in navigator) {
             window.addEventListener('load', async () => {
                 try {
-                    await navigator.serviceWorker.register('service-worker.js');
-                    console.log('Service Worker Terdaftar');
+                    const reg = await navigator.serviceWorker.register('service-worker.js');
+                    console.log('Service Worker Terdaftar:', reg.scope);
                 } catch (err) {
                     console.error('Gagal Daftarkan Service Worker:', err);
                 }
             });
         }
 
-        // Fungsi Fullscreen Otomatis
-        async function enterFullscreen() {
-            const docEl = document.documentElement;
-            if (docEl.requestFullscreen) {
-                await docEl.requestFullscreen({ navigationUI: "hide" });
-            } else if (docEl.webkitRequestFullscreen) {
-                await docEl.webkitRequestFullscreen({ navigationUI: "hide" });
-            }
-        }
-
-        // Jalankan Fullscreen Setelah Gambar Dimuat
-        document.getElementById('bg-image').onload = async () => {
-            await enterFullscreen();
-        };
-
-        // Tangani Error Gambar Tidak Dimuat
-        document.getElementById('bg-image').onerror = () => {
-            document.body.style.backgroundColor = '#000';
-        };
+        // Tangani Error Gambar
+        document.getElementById('bg-image').addEventListener('error', (e) => {
+            console.error('Gambar Tidak Dimuat:', e);
+            e.target.style.backgroundColor = '#000';
+        });
     </script>
 </body>
 </html>
