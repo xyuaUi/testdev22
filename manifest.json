@@ -1,13 +1,11 @@
 {
-    "name": "Cadangan PWA Fullscreen",
-    "short_name": "PWA Fullscreen",
+    "name": "PWA Redmi 10",
+    "short_name": "PWA Redmi10",
     "start_url": ".",
-    "display": "fullscreen", // Mode fullscreen penuh
-    "orientation": "landscape", // Wajib landscape
+    "display": "fullscreen",
+    "orientation": "landscape",
     "background_color": "#000000",
     "theme_color": "#000000",
-    "description": "Cadangan PWA Landscape Fullscreen Tanpa Notch/Punchole",
-    "categories": ["utilities"],
     "lang": "id",
     "icons": [
         {
@@ -42,8 +40,5 @@
         }
     ],
     "prefer_related_applications": false,
-    "display_override": ["fullscreen", "landscape"],
-    "edge_side_panel": {
-        "preferred_width": 0
-    }
+    "display_override": ["fullscreen"]
 }
