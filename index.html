@@ -2,7 +2,7 @@
 <html lang="id">
 <head>
     <meta charset="UTF-8">
-    <!-- Paksa Landscape & Fullscreen Tanpa Notch -->
+    <!-- Paksa Landscape -->
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no, viewport-fit=cover">
     <meta name="orientation" content="landscape">
     
@@ -29,26 +29,33 @@
             top: 0;
             left: 0;
             overflow: hidden;
-            background-color: #000;
             display: flex;
             justify-content: center;
             align-items: center;
         }
-        /* Teks Kecil Bisa Ditekan */
+        <!-- Latar Belakang 00.png -->
+        #bg-image {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            z-index: -1;
+        }
+        <!-- Teks Kecil Tanpa Border -->
         #click-text {
             font-size: 14px;
             color: #fff;
             text-align: center;
             cursor: pointer;
             user-select: none;
-            transition: color 0.2s ease;
-        }
-        #click-text:active {
-            color: #ccc;
+            z-index: 1;
         }
     </style>
 </head>
 <body>
+    <img id="bg-image" src="assets/00.png" alt="Latar Belakang">
     <div id="click-text" onclick="handleClick()">Klik Saya</div>
 
     <script>
@@ -61,13 +68,9 @@
             });
         }
 
-        // Fungsi Saat Teks Ditekan
+        // Fungsi Saat Ditekan - Tidak Ada Aksi Visual
         function handleClick() {
-            alert('Teks Ditekan! 🎉');
-            // Paksa Fullscreen Jika Belum Aktif
-            if (!document.fullscreenElement) {
-                document.documentElement.requestFullscreen({ navigationUI: "hide" });
-            }
+            // Tidak ada popup/informasi apapun
         }
     </script>
 </body>
