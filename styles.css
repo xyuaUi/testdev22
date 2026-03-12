@@ -1,0 +1,158 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: Arial, sans-serif;
+    color: #FFFFFF;
+}
+
+body {
+    width: 100vw;
+    height: 100vh;
+    overflow: hidden;
+    position: relative;
+}
+
+.background {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: #FFA500; /* Warna oranye mirip contoh */
+    z-index: -1;
+}
+
+/* Navigasi Kiri */
+.left-nav {
+    position: absolute;
+    top: 50%;
+    left: 5vw;
+    transform: translateY(-50%);
+}
+
+.left-nav ul {
+    list-style: none;
+}
+
+.nav-btn {
+    background: transparent;
+    border: none;
+    font-size: 1.5rem;
+    font-weight: bold;
+    text-transform: uppercase;
+    margin: 1.5rem 0;
+    cursor: pointer;
+    transition: text-shadow 0.2s;
+}
+
+.nav-btn:hover {
+    text-shadow: 0 0 5px #FFFFFF;
+}
+
+/* Konten Tengah */
+.center-content {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+}
+
+.main-illustration {
+    max-width: 40vw;
+    height: auto;
+}
+
+/* Widget Kanan */
+.right-widgets {
+    position: absolute;
+    top: 50%;
+    right: 5vw;
+    transform: translateY(-50%);
+    display: flex;
+    flex-direction: column;
+    gap: 2rem;
+}
+
+.widget-item img {
+    width: 15vw;
+    border-radius: 10px;
+    box-shadow: 0 0 10px rgba(0,0,0,0.3);
+    transition: transform 0.2s;
+}
+
+.widget-item img:hover {
+    transform: scale(1.05);
+}
+
+/* Footer Bar */
+.bottom-bar {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    background: #FFB347; /* Warna oranye lebih terang */
+    padding: 0.8rem 2rem;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.bar-btn {
+    background: transparent;
+    border: none;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    font-weight: bold;
+}
+
+.bar-btn img {
+    width: 2rem;
+    height: 2rem;
+}
+
+.stat-item {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    margin: 0 1rem;
+    font-weight: bold;
+}
+
+.stat-item img {
+    width: 1.5rem;
+    height: 1.5rem;
+}
+
+.user-avatar {
+    width: 2.5rem;
+    height: 2.5rem;
+    border-radius: 50%;
+    margin-right: 0.5rem;
+}
+
+.username {
+    font-weight: bold;
+    margin-right: 1rem;
+}
+
+/* PWA Install Button */
+.install-btn {
+    position: fixed;
+    bottom: 5rem;
+    right: 2rem;
+    background: #FFFFFF;
+    color: #FFA500;
+    border: none;
+    padding: 1rem 1.5rem;
+    border-radius: 25px;
+    font-weight: bold;
+    cursor: pointer;
+    box-shadow: 0 0 10px rgba(0,0,0,0.2);
+}
+
+.hidden {
+    display: none;
+}
